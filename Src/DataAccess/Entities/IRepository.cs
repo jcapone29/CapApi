@@ -8,7 +8,7 @@ namespace DataAccess.Entities
 {
     interface IRepository 
     {
-
+        Task<IEnumerable<Potato>> GetPotato(Potato id);
         Task<IEnumerable<Potato>> GetPotatos(string id);
         Task<IEnumerable<Potato>> CreatePotato(Potato user);
         Task<IEnumerable<Leagues>> GetLeagues(Leagues league);

@@ -10,7 +10,7 @@ namespace DataAccess.Repositories
     {
         public async Task<IEnumerable<Potato>> GetPotatos(string id)
         {
-            var sql = "Select * from PotatoUsers where Id in ('" + id + ")'";
+            var sql = "Select * from PotatoUsers where Id in ('" + id + "')";
 
             using (var conn = DataConnectionProvider.GetProdConnection())
             {
@@ -18,15 +18,15 @@ namespace DataAccess.Repositories
             }
         }
 
-        public async Task<IEnumerable<Potato>> CreatePotato(Potato user)
+        public async Task<IEnumerable<Potato>> CreatePotato(Potato currentUser)
         {
             var sql = "INSERT INTO [dbo].[PotatoUsers]  ([UserName] ,[Password] ,[Email] ,[FirstName] ,[LastName])" +
                       "VALUES (" +
-                        "'" + user.UserName + "'" +
-                        "'" + user.Password + "'" +
-                        "'" + user.Email + "'" +
-                        "'" + user.FirstName + "'" +
-                        "'" + user.LastName + "')";
+                        "'" + currentUser.UserName + "'," +
+                        "'" + currentUser.Password + "'," +
+                        "'" + currentUser.Email + "'," +
+                        "'" + currentUser.FirstName + "'," +
+                        "'" + currentUser.LastName + "')";
 
             using (var conn = DataConnectionProvider.GetProdConnection())
             {
@@ -58,9 +58,9 @@ namespace DataAccess.Repositories
         {
             var sql = "INSERT INTO [dbo].[Scores]  ([UserId] ,[Score] ,[Course] ,[RoundDate])" +
                       "VALUES (" +
-                        "'" + scores.UserId + "'" +
-                        "'" + scores.Score + "'" +
-                        "'" + scores.Course + "'" +
+                        "'" + scores.UserId + "'," +
+                        "'" + scores.Score + "'," +
+                        "'" + scores.Course + "'," +
                         "'" + scores.RoundDate + "')";
 
             using (var conn = DataConnectionProvider.GetProdConnection())
@@ -76,6 +76,16 @@ namespace DataAccess.Repositories
             using (var conn = DataConnectionProvider.GetProdConnection())
             {
                 return await conn.QueryAsync<Scores>(sql);
+            }
+        }
+
+        public async Task<IEnumerable<Potato>> GetPotato(Potato currentUser)
+        {
+            var sql = "Select * from PotatoUsers where UserName = '" + currentUser.UserName + "' and Password = '" + currentUser.Password + "'";
+
+            using (var conn = DataConnectionProvider.GetProdConnection())
+            {
+                return await conn.QueryAsync<Potato>(sql);
             }
         }
     }

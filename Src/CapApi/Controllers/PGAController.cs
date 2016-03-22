@@ -21,6 +21,16 @@ namespace CapApi.Controllers
         }
 
         [Route("getUser")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetUser(Potato user)
+        {
+
+            return Ok(await _pgaSerive.GetPotato(user));
+
+        }
+
+
+        [Route("getUsers")]
         public async Task<IHttpActionResult> GetPotatos(string id)
         {
 
@@ -29,14 +39,14 @@ namespace CapApi.Controllers
         }
 
         [Route("createUser")]
-        public async Task<IHttpActionResult> CreatePotato(Potato user)
+        public async Task<IHttpActionResult> CreatePotato(Potato currentUser)
         {
 
-            return Ok(await _pgaSerive.CreatePotato(user));
+            return Ok(await _pgaSerive.CreatePotato(currentUser));
 
         }
 
-        [Route("getUser")]
+        [Route("getLeague")]
         public async Task<IHttpActionResult> GetLeagues(Leagues league)
         {
 
@@ -44,7 +54,7 @@ namespace CapApi.Controllers
 
         }
 
-        [Route("getUser")]
+        [Route("getLeagueUser")]
         public async Task<IHttpActionResult> GetPotatos(Leagues league)
         {
 
