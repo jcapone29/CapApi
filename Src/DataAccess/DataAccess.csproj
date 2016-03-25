@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Course.cs" />
     <Compile Include="Entities\IRepository.cs" />
     <Compile Include="Entities\Leagues.cs" />
     <Compile Include="Entities\Scores.cs" />

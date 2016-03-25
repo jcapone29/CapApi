@@ -22,7 +22,7 @@ namespace CapApi.Controllers
 
         [Route("getUser")]
         [HttpGet]
-        public async Task<IHttpActionResult> GetUser(Potato user)
+        public async Task<IHttpActionResult> GetUser([FromUri] Potato user)
         {
 
             return Ok(await _pgaSerive.GetPotato(user));
@@ -62,5 +62,16 @@ namespace CapApi.Controllers
 
         }
 
+        [Route("getStates")]
+        public async Task<IEnumerable<string>> GetStates()
+        {
+            return await _pgaSerive.GetStates();
+        }
+
+        [Route("getCourseList")]
+        public async Task<IEnumerable<Course>> GetCourseList(string state, string gender)
+        {
+            return await _pgaSerive.GetCourseList(state, gender);
+        }
     }
 }

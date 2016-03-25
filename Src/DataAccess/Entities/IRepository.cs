@@ -15,6 +15,8 @@ namespace DataAccess.Entities
         Task<IEnumerable<Leagues>> CreateLeague(Leagues league);
         Task<IEnumerable<Scores>> AddScore(Scores id);
         Task<IEnumerable<Scores>>GetScores(string id);
+        Task<IEnumerable<string>> GetStates();
+        Task<IEnumerable<Course>> GetCourseList(string state, string gender);
 
     }
 }

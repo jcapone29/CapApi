@@ -88,5 +88,25 @@ namespace DataAccess.Repositories
                 return await conn.QueryAsync<Potato>(sql);
             }
         }
+
+        public async Task<IEnumerable<string>> GetStates()
+        {
+            var sql = "select distinct [State] from  [dbo].UsaCourse where [state] is not null and LEN([state]) < 4 order by [state] asc ";
+
+            using (var conn = DataConnectionProvider.GetProdConnection())
+            {
+                return await conn.QueryAsync<string>(sql);
+            }
+        }
+
+        public async Task<IEnumerable<Course>> GetCourseList(string state, string gender)
+        {
+            var sql = "select distinct  *  from [dbo].UsaCourse where state = '" + state + "' and Gender = '" + gender + "'";
+
+            using (var conn = DataConnectionProvider.GetProdConnection())
+            {
+                return await conn.QueryAsync<Course>(sql);
+            }
+        }
     }
 }

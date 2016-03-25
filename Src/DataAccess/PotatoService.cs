@@ -52,5 +52,15 @@ namespace DataAccess
         {
             return await _potatoRepo.GetPotato(user);
         }
+
+        public async Task<IEnumerable<string>> GetStates()
+        {
+            return await _potatoRepo.GetStates();
+        }
+
+        public async Task<IEnumerable<Course>> GetCourseList(string state, string gender)
+        {
+            return await _potatoRepo.GetCourseList(state, gender);
+        }
     }
 }
