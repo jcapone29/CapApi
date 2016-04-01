@@ -15,6 +15,8 @@ namespace DataAccess.Entities
         public string Tee { get; set; }
         public string UsgaRating { get; set; }
         public string Slope { get; set; }
-
+        public string Front { get; set; }
+        public string Back { get; set; }
+        public string BogeyRating { get; set; }
     }
 }

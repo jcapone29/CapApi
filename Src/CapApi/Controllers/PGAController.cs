@@ -46,6 +46,14 @@ namespace CapApi.Controllers
 
         }
 
+        [Route("postScore")]
+        public async Task<IHttpActionResult> PostScore(Scores userScore)
+        {
+
+            return Ok(await _pgaSerive.AddScore(userScore));
+
+        }
+
         [Route("getLeague")]
         public async Task<IHttpActionResult> GetLeagues(Leagues league)
         {

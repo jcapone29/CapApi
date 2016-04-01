@@ -58,9 +58,9 @@ namespace DataAccess.Repositories
         {
             var sql = "INSERT INTO [dbo].[Scores]  ([UserId] ,[Score] ,[Course] ,[RoundDate])" +
                       "VALUES (" +
-                        "'" + scores.UserId + "'," +
+                        "'" + scores.UserId.Id + "'," +
                         "'" + scores.Score + "'," +
-                        "'" + scores.Course + "'," +
+                        "'" + scores.Course.Name + "'," +
                         "'" + scores.RoundDate + "')";
 
             using (var conn = DataConnectionProvider.GetProdConnection())
@@ -91,7 +91,7 @@ namespace DataAccess.Repositories
 
         public async Task<IEnumerable<string>> GetStates()
         {
-            var sql = "select distinct [State] from  [dbo].UsaCourse where [state] is not null and LEN([state]) < 4 order by [state] asc ";
+            var sql = "select distinct [State] from  [dbo].[UsaCourseList] where [state] is not null and LEN([state]) < 4 order by [state] asc ";
 
             using (var conn = DataConnectionProvider.GetProdConnection())
             {
@@ -101,7 +101,7 @@ namespace DataAccess.Repositories
 
         public async Task<IEnumerable<Course>> GetCourseList(string state, string gender)
         {
-            var sql = "select distinct  *  from [dbo].UsaCourse where state = '" + state + "' and Gender = '" + gender + "'";
+            var sql = "select distinct  *  from [dbo].[UsaCourseList] where state = '" + state + "' and Gender = '" + gender + "' order by name asc";
 
             using (var conn = DataConnectionProvider.GetProdConnection())
             {
