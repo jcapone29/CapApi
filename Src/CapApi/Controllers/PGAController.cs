@@ -29,6 +29,15 @@ namespace CapApi.Controllers
 
         }
 
+        [Route("getPotatoList")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetUser()
+        {
+
+            return Ok(await _pgaSerive.GetLeaguePotato());
+
+        }
+
 
         [Route("getUsers")]
         public async Task<IHttpActionResult> GetPotatos(string id)

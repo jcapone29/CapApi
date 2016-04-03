@@ -8,6 +8,16 @@ namespace DataAccess.Repositories
 {
     class PotatoRepository: IRepository
     {
+        public async Task<IEnumerable<Potato>> GetLeaguePotato()
+        {
+            var sql = "select Id, Username, Email, FirstName, LastName from [dbo].[PotatoUsers]";
+
+            using (var conn = DataConnectionProvider.GetProdConnection())
+            {
+                return await conn.QueryAsync<Potato>(sql);
+            }
+        }
+
         public async Task<IEnumerable<Potato>> GetPotatos(string id)
         {
             var sql = "Select * from PotatoUsers where Id in ('" + id + "')";

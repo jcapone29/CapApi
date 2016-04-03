@@ -17,6 +17,11 @@ namespace DataAccess
             _potatoRepo = new PotatoRepository();
         }
 
+        public async Task<IEnumerable<Potato>> GetLeaguePotato()
+        {
+            return await _potatoRepo.GetLeaguePotato();
+        }
+
         public async Task<IEnumerable<Potato>> GetPotatos(string id)
         {
             return await _potatoRepo.GetPotatos(id);
